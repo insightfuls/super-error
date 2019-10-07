@@ -10,7 +10,12 @@ function BaseConstructor() {
       Error.captureStackTrace(this, this.constructor);
     }
 
-    this.ownStack = this.stack;
+    Object.defineProperty(this, "ownStack", {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: this.stack
+    });
   }
 }
 
